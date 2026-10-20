@@ -1,4 +1,9 @@
 import typing
+
+# this for next exercise(ex2)
+if typing.TYPE_CHECKING:
+    from data_pipeline import ExportPlugin
+
 from data_processor import (
         DataProcessor,
         NumericProcessor,
@@ -59,6 +64,19 @@ class DataStream:
                     f"{name}: total {total} items processed, "
                     f"remaining {remaining} on processor"
                 )
+
+# for next exercise (ex2)
+    def output_pipeline(self, nb: int, plugin: ExportPlugin) -> None:
+        for proc in self.processors:
+            output_data: list[tuple[int, str]] = []
+
+            for i in range(nb):
+                if not proc.data:
+                    break
+
+                output_data.append(proc.output())
+            if output_data:
+                plugin.process_output(output_data)
 
 
 if __name__ == "__main__":
