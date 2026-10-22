@@ -66,7 +66,7 @@ class DataStream:
                 )
 
 # for next exercise (ex2)
-    def output_pipeline(self, nb: int, plugin: ExportPlugin) -> None:
+    def output_pipeline(self, nb: int, plugin: 'ExportPlugin') -> None:
         for proc in self.processors:
             output_data: list[tuple[int, str]] = []
 
